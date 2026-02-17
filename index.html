@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Rabbit | Cafe + Restaurant in San Juan</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           MOON RABBIT BRAND SYSTEM
+           Warm, cozy, community-focused
+           ======================================== */
+        :root {
+            --mr-slate: #415A6B;
+            --mr-slate-dark: #2D4050;
+            --mr-slate-light: #5A7285;
+            --mr-gold: #D4A574;
+            --mr-gold-light: #E5C4A8;
+            --mr-cream: #FAF8F5;
+            --mr-warm-white: #FFFDFB;
+            --mr-charcoal: #2A2A2A;
+            --mr-text: #4A4A4A;
+            --mr-text-light: #7A7A7A;
+            
+            --font-heading: 'Fraunces', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            --section-padding: 100px;
+            --container-max: 1140px;
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--mr-cream);
+            color: var(--mr-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            line-height: 1.25;
+            color: var(--mr-slate-dark);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: var(--mr-text-light);
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .animate {
+            opacity: 0;
+        }
+
+        .animate.visible {
+            animation: fadeInUp 0.7s ease forwards;
+        }
+
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 253, 251, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 14px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            height: 48px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.03);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--mr-slate-dark);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--mr-gold);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--mr-slate);
+            color: var(--mr-cream) !important;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--mr-slate-dark);
+            transform: translateY(-2px);
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--mr-slate-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 var(--section-padding);
+            background: linear-gradient(180deg, var(--mr-warm-white) 0%, var(--mr-cream) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 500px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--mr-slate);
+            color: var(--mr-gold-light);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+
+        .hero-badge span {
+            font-size: 1rem;
+        }
+
+        .hero-title {
+            margin-bottom: 24px;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--mr-gold);
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--mr-slate);
+            color: var(--mr-cream);
+        }
+
+        .btn-primary:hover {
+            background: var(--mr-slate-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(65, 90, 107, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--mr-slate);
+            border: 1.5px solid var(--mr-slate);
+        }
+
+        .btn-secondary:hover {
+            background: var(--mr-slate);
+            color: var(--mr-cream);
+        }
+
+        .hero-images {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .hero-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-img:hover img {
+            transform: scale(1.03);
+        }
+
+        .hero-img-tall {
+            grid-row: span 2;
+            height: 420px;
+        }
+
+        .hero-img-small {
+            height: 200px;
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--mr-warm-white);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-floating-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--mr-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .hero-floating-text {
+            font-size: 0.85rem;
+            color: var(--mr-slate-dark);
+        }
+
+        .hero-floating-text strong {
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        /* ========================================
+           TAGLINE BANNER
+           ======================================== */
+        .tagline-banner {
+            background: var(--mr-slate);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .tagline-banner h2 {
+            color: var(--mr-cream);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .tagline-banner h2 span {
+            color: var(--mr-gold);
+        }
+
+        /* ========================================
+           ABOUT / STORY SECTION
+           ======================================== */
+        .about {
+            padding: var(--section-padding) 0;
+            background: var(--mr-cream);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            border-radius: var(--radius);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: -16px;
+            right: 16px;
+            bottom: 16px;
+            border: 2px solid var(--mr-gold);
+            border-radius: var(--radius);
+            z-index: -1;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mr-gold);
+            margin-bottom: 16px;
+        }
+
+        .about-content h2 {
+            margin-bottom: 24px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .about-features {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .about-feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--mr-slate);
+            color: var(--mr-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .about-feature span {
+            font-weight: 500;
+            color: var(--mr-slate-dark);
+        }
+
+        /* ========================================
+           MENU HIGHLIGHTS
+           ======================================== */
+        .menu {
+            padding: var(--section-padding) 0;
+            background: var(--mr-warm-white);
+        }
+
+        .menu-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .menu-header p {
+            margin-top: 16px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .menu-card {
+            background: var(--mr-cream);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .menu-card-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .menu-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-card:hover .menu-card-image img {
+            transform: scale(1.05);
+        }
+
+        .menu-card-content {
+            padding: 28px;
+        }
+
+        .menu-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .menu-card p {
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .menu-card-price {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--mr-gold);
+            font-weight: 500;
+        }
+
+        .menu-cta {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        /* ========================================
+           VIBE / GALLERY
+           ======================================== */
+        .vibe {
+            padding: var(--section-padding) 0;
+            background: var(--mr-cream);
+        }
+
+        .vibe-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+
+        .vibe-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .vibe-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .vibe-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .vibe-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .vibe-item-wide {
+            grid-column: span 2;
+            aspect-ratio: 2/1;
+        }
+
+        .vibe-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(45, 64, 80, 0.8), transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .vibe-item:hover .vibe-overlay {
+            opacity: 1;
+        }
+
+        .vibe-overlay p {
+            color: var(--mr-cream);
+            font-weight: 500;
+        }
+
+        /* ========================================
+           EVENTS / PRIVATE DINING
+           ======================================== */
+        .events {
+            padding: var(--section-padding) 0;
+            background: var(--mr-slate);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .events-content h2 {
+            color: var(--mr-cream);
+            margin-bottom: 24px;
+        }
+
+        .events-content p {
+            color: rgba(250, 248, 245, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .events-list {
+            margin: 32px 0;
+        }
+
+        .events-list-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(250, 248, 245, 0.15);
+        }
+
+        .events-list-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--mr-gold);
+            color: var(--mr-slate-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .events-list-text {
+            color: var(--mr-cream);
+            font-weight: 500;
+        }
+
+        .events-image img {
+            border-radius: var(--radius);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-gold {
+            background: var(--mr-gold);
+            color: var(--mr-slate-dark);
+        }
+
+        .btn-gold:hover {
+            background: var(--mr-gold-light);
+        }
+
+        /* ========================================
+           TESTIMONIAL
+           ======================================== */
+        .testimonial {
+            padding: 80px 0;
+            background: var(--mr-warm-white);
+            text-align: center;
+        }
+
+        .testimonial-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .testimonial-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+            font-style: italic;
+            color: var(--mr-slate-dark);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .testimonial-author {
+            font-size: 0.9rem;
+            color: var(--mr-text-light);
+        }
+
+        .testimonial-author strong {
+            color: var(--mr-gold);
+        }
+
+        /* ========================================
+           CONTACT / VISIT
+           ======================================== */
+        .contact {
+            padding: var(--section-padding) 0;
+            background: var(--mr-cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 48px;
+        }
+
+        .contact-block h4 {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mr-gold);
+            margin-bottom: 20px;
+        }
+
+        .contact-block p,
+        .contact-block a {
+            color: var(--mr-text);
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .contact-block a:hover {
+            color: var(--mr-gold);
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .contact-social a {
+            width: 44px;
+            height: 44px;
+            background: var(--mr-slate);
+            color: var(--mr-cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-social a:hover {
+            background: var(--mr-gold);
+            color: var(--mr-slate-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            padding: 32px 0;
+            background: var(--mr-slate-dark);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer p {
+            font-size: 0.85rem;
+            color: rgba(250, 248, 245, 0.6);
+        }
+
+        .footer-logo {
+            height: 32px;
+            opacity: 0.5;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            :root {
+                --section-padding: 80px;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-images {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .hero-floating-card {
+                display: none;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .vibe-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .vibe-item-wide {
+                grid-column: span 2;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+
+            .contact-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero-images {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-img-tall {
+                grid-row: span 1;
+                height: 280px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .about-features {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .vibe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vibe-item,
+            .vibe-item-wide {
+                grid-column: span 1;
+                aspect-ratio: 4/3;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav-container">
+            <a href="#">
+                <img src="logo.jpg" alt="Moon Rabbit" class="nav-logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#vibe">The Vibe</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Visit Us</a></li>
+                <li><a href="tel:+6328355-6125" class="nav-cta">Call to Reserve</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content animate">
+                    <div class="hero-badge">
+                        <span>🐰</span> Cafe + Restaurant in San Juan
+                    </div>
+                    <h1 class="hero-title">Good stories start with <em>shared meals</em></h1>
+                    <p class="hero-description">
+                        Welcome to Moon Rabbit — where modern Asian comfort food meets warm, homey vibes. Pull up a chair, bring your friends (and your dog!), and stay a while.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="tel:+6328355-6125" class="btn btn-primary">Reserve a Table</a>
+                        <a href="#menu" class="btn btn-secondary">See the Menu</a>
+                    </div>
+                </div>
+                <div class="hero-images animate animate-delay-2">
+                    <div class="hero-img hero-img-tall">
+                        <img src="smile.png" alt="Happy diner at Moon Rabbit">
+                    </div>
+                    <div class="hero-img hero-img-small">
+                        <img src="work.png" alt="Work-friendly cafe">
+                    </div>
+                    <div class="hero-img hero-img-small">
+                        <img src="dog.png" alt="Pet-friendly">
+                    </div>
+                    <div class="hero-floating-card">
+                        <div class="hero-floating-icon">🐕</div>
+                        <div class="hero-floating-text">
+                            <strong>Pet Friendly</strong>
+                            Bring your fur babies!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tagline Banner -->
+    <section class="tagline-banner">
+        <div class="container">
+            <h2>"<span>Dine and Unwind</span> — because the best conversations happen over good food."</h2>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image animate">
+                    <img src="interior.png" alt="Moon Rabbit Interior">
+                </div>
+                <div class="about-content animate animate-delay-2">
+                    <span class="section-label">Our Story</span>
+                    <h2>A cozy corner in San Juan</h2>
+                    <p>
+                        Named after the mythical rabbit on the moon — the one who crafts the elixir of life — Moon Rabbit is our take on modern Asian comfort food. We took a charming old house in San Juan and transformed it into a space where families gather, friends reconnect, and strangers become neighbors.
+                    </p>
+                    <p>
+                        Our menu blends beloved Chinese classics with contemporary Filipino touches. Every dish is made for sharing, every corner is made for lingering. Whether you're here for brunch, a work session, a family celebration, or just a quiet coffee — you belong here.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">☕</div>
+                            <span>Work-Friendly</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">🐕</div>
+                            <span>Pet-Friendly</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">🅿️</div>
+                            <span>Free Parking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="menu-header animate">
+                <span class="section-label">What We Serve</span>
+                <h2>Comfort food for the soul</h2>
+                <p>Modern Asian dishes made for sharing. Home-cooked flavors with a contemporary twist.</p>
+            </div>
+            
+            <div class="menu-grid">
+                <div class="menu-card animate animate-delay-1">
+                    <div class="menu-card-image">
+                        <img src="dishes.png" alt="Signature Dishes">
+                    </div>
+                    <div class="menu-card-content">
+                        <h3>Salted Egg Shrimp</h3>
+                        <p>Crispy golden shrimp coated in rich, savory salted egg sauce</p>
+                        <span class="menu-card-price">Guest Favorite</span>
+                    </div>
+                </div>
+                
+                <div class="menu-card animate animate-delay-2">
+                    <div class="menu-card-image">
+                        <img src="brunch.png" alt="Brunch Spread">
+                    </div>
+                    <div class="menu-card-content">
+                        <h3>Weekend Brunch</h3>
+                        <p>Lumpia, shrimp, salmon, and all your Filipino favorites</p>
+                        <span class="menu-card-price">Best for Sharing</span>
+                    </div>
+                </div>
+                
+                <div class="menu-card animate animate-delay-3">
+                    <div class="menu-card-image">
+                        <img src="work.png" alt="Moon Rabbit Panna Cotta">
+                    </div>
+                    <div class="menu-card-content">
+                        <h3>Moon Rabbit Panna Cotta</h3>
+                        <p>Our signature rabbit-shaped dessert with strawberry puree</p>
+                        <span class="menu-card-price">₱180</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-cta animate">
+                <a href="#" class="btn btn-secondary">View Full Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vibe / Gallery -->
+    <section class="vibe" id="vibe">
+        <div class="container">
+            <div class="vibe-header animate">
+                <span class="section-label">The Vibe</span>
+                <h2>More than just a restaurant</h2>
+                <p>A space for work, play, celebration, and everything in between.</p>
+            </div>
+            
+            <div class="vibe-grid">
+                <div class="vibe-item vibe-item-wide animate">
+                    <img src="interior.png" alt="Moon Rabbit Interior">
+                    <div class="vibe-overlay">
+                        <p>Spacious, warm, and welcoming</p>
+                    </div>
+                </div>
+                <div class="vibe-item animate animate-delay-1">
+                    <img src="friends.png" alt="Friends dining">
+                    <div class="vibe-overlay">
+                        <p>Where good stories begin</p>
+                    </div>
+                </div>
+                <div class="vibe-item animate animate-delay-2">
+                    <img src="dog.png" alt="Pet friendly">
+                    <div class="vibe-overlay">
+                        <p>Fur babies welcome!</p>
+                    </div>
+                </div>
+                <div class="vibe-item animate animate-delay-1">
+                    <img src="work.png" alt="Work from cafe">
+                    <div class="vibe-overlay">
+                        <p>Your new favorite workspace</p>
+                    </div>
+                </div>
+                <div class="vibe-item animate animate-delay-2">
+                    <img src="smile.png" alt="Happy customer">
+                    <div class="vibe-overlay">
+                        <p>Taste that brings a smile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="events-grid">
+                <div class="events-content animate">
+                    <span class="section-label" style="color: var(--mr-gold);">Private Events</span>
+                    <h2>Celebrate with us</h2>
+                    <p>
+                        From intimate dinners to big family gatherings, Moon Rabbit is the perfect backdrop for your special moments. Our spacious venue and customizable menu options make planning easy.
+                    </p>
+                    
+                    <div class="events-list">
+                        <div class="events-list-item">
+                            <div class="events-list-icon">🎂</div>
+                            <span class="events-list-text">Birthday Celebrations</span>
+                        </div>
+                        <div class="events-list-item">
+                            <div class="events-list-icon">👨‍👩‍👧‍👦</div>
+                            <span class="events-list-text">Family Reunions</span>
+                        </div>
+                        <div class="events-list-item">
+                            <div class="events-list-icon">💼</div>
+                            <span class="events-list-text">Corporate Events</span>
+                        </div>
+                        <div class="events-list-item">
+                            <div class="events-list-icon">🎉</div>
+                            <span class="events-list-text">Kids Parties</span>
+                        </div>
+                    </div>
+                    
+                    <a href="tel:+6328355-6125" class="btn btn-gold">Inquire Now</a>
+                </div>
+                <div class="events-image animate animate-delay-2">
+                    <img src="brunch.png" alt="Private Events">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial-content animate">
+                <p class="testimonial-quote">
+                    "The place is quiet, great ambiance, big parking area and the food is really good. We celebrated our anniversary here and received complimentary Moon Rabbit Panna Cotta. We'll definitely come back again!"
+                </p>
+                <p class="testimonial-author">— <strong>A Happy Guest</strong>, Google Review</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-block animate">
+                    <h4>Find Us</h4>
+                    <p>
+                        2 Ledesma St. corner F. Benitez<br>
+                        San Juan City, Metro Manila<br>
+                        Philippines
+                    </p>
+                </div>
+                <div class="contact-block animate animate-delay-1">
+                    <h4>Hours</h4>
+                    <p>
+                        Monday – Thursday: 11am – 9pm<br>
+                        Friday – Sunday: 11am – 11pm<br>
+                        <em>Closed on Tuesdays</em>
+                    </p>
+                </div>
+                <div class="contact-block animate animate-delay-2">
+                    <h4>Contact</h4>
+                    <p>
+                        <a href="tel:+6328355-6125">(02) 8355-6125</a><br>
+                        <a href="tel:+639171583785">0917-158-3785</a>
+                    </p>
+                    <div class="contact-social">
+                        <a href="https://www.instagram.com/moonrabbit.mnl/" target="_blank" aria-label="Instagram">IG</a>
+                        <a href="https://www.facebook.com/moonrabbit.mnl" target="_blank" aria-label="Facebook">FB</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2025 Moon Rabbit Cafe + Restaurant. All rights reserved. · Built with ♡</p>
+            <img src="logo.jpg" alt="Moon Rabbit" class="footer-logo">
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
